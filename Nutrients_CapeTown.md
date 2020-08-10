@@ -3,20 +3,20 @@
 This is an R Markdown document describing the study characteristics of
 the Cape Town cohort nutrient analysis.
 
-\#\#load required libraries
+## load required libraries
 
 ``` r
 library(tableone)
 library(tidyverse)
 ```
 
-\#\#load dataset
+## load dataset
 
 ``` r
 Data<-read.csv("Data/cape_ town_fasd_nutrient_data_08032020.csv")
 ```
 
-\#\#Summary table to nutrient/weight distributions
+## Summary table to nutrient/weight distributions
 
 ``` r
 myVars <- names(Data)[2:ncol(Data)]
@@ -112,7 +112,7 @@ write.csv(tabMat_2, file = "Tables/Study_Table2_byAlcoholStatus.csv")
 #comparing heavily exposed (n=35) and unexposed (n=30), elevated methionine levels are observed in the heavy exposed children.  Placental weight is reduced among heavily exposed children; 
 ```
 
-\#\#Histogram distribution of nutrients and weight
+## Histogram distribution of nutrients and weight
 
 ``` r
 CT_hist<-Data%>%
@@ -128,22 +128,10 @@ ggplot(.,aes(value))+
 
 pdf("Plots/Demo_hist.pdf")
 CT_hist
-```
-
-    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-
-``` r
 dev.off()
-```
 
-    ## png 
-    ##   2
-
-``` r
 CT_hist
 ```
-
-    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
 ![](Nutrients_CapeTown_files/figure-gfm/histogram-1.png)<!-- -->
 
@@ -151,8 +139,7 @@ CT_hist
 #range in gestational age spans 31.57 weeks to 44.57 weeks > should these two individuals be excluded from the analysis?  Maybe conduct sensitivity analysis restricted to term infants
 ```
 
-\#\#Boxplot showing difference in methionine levels and placental weight
-among heavily exposed and unexposed individuals
+## Boxplot showing difference in methionine levels and placental weight among heavily exposed and unexposed individuals
 
 ``` r
 #Methionine by alcohol exposure
@@ -180,22 +167,15 @@ pw_alc<-ggplot(Data,aes(x=factor(heavyexpYN),y=placentalweight,fill=factor(heavy
 pw_alc
 ```
 
-    ## Warning: Removed 3 rows containing non-finite values (stat_boxplot).
-
 ![](Nutrients_CapeTown_files/figure-gfm/boxplot-2.png)<!-- -->
 
-\#\#PCA
+## PCA
 
 ``` r
 PCA<-Data[,2:10]
 
 #identify metabolite with 0 variance
 which(apply(PCA, 2, var)==0) 
-```
-
-    ## named integer(0)
-
-``` r
 #None
 
 #drop nonvarying
@@ -212,11 +192,7 @@ plot(PCA_scores, npcs=4, type="lines")
 pos_scores <- data.frame(ID=Data$ID,PCA_scores$x[,1:3])
 pos_scores<-pos_scores%>%
   left_join(Data)
-```
 
-    ## Joining, by = "ID"
-
-``` r
 PCA_plot<-ggplot(pos_scores, aes(x=PC1,y=PC2,color=factor(heavyexpYN)),label=ID) +
   geom_point(size=3)+
   theme_bw()+
@@ -230,12 +206,7 @@ PCA_plot<-ggplot(pos_scores, aes(x=PC1,y=PC2,color=factor(heavyexpYN)),label=ID)
 pdf("Plots/PCA_nutrients.pdf")
 PCA_plot
 dev.off()
-```
 
-    ## png 
-    ##   2
-
-``` r
 PCA_plot
 ```
 
