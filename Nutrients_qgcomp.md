@@ -168,7 +168,7 @@ PWBW_focus_bwqs_qgcomp
 pdf("Plots/qgcomp/pwbw_focus_weights.pdf")
 plot(PWBW_focus_bwqs_qgcomp)
 dev.off()
-plot(PW_focus_bwqs_qgcomp_boot, pointwiseref = 3)
+plot(PW_focus_bwqs_qgcomp, pointwiseref = 3)
 ```
 
 ![](Nutrients_qgcomp_files/figure-gfm/qgcomp_pwbw_focused-1.png)<!-- -->
@@ -228,11 +228,7 @@ plot(BW_broad_bwqs_qgcomp)
 
 ``` r
 BW_broad_bwqs_qgcomp_boot<-qgcomp.boot(birthweight ~ gestationalage+ lgaadxp_2017 + Folate + B12 + Choline + Methionine+ Zinc+B6+Riboflavin+Glycine+Serine, expnms=nutrients_broad, data=Data, family=gaussian(), q=4,B=500,seed=2016)
-```
 
-    ## Expected time to finish: 0.58 minutes
-
-``` r
 pdf("Plots/qgcomp/bw_broad_fit.pdf")
 plot(BW_broad_bwqs_qgcomp_boot, pointwiseref = 3)
 dev.off()
