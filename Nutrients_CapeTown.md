@@ -142,11 +142,11 @@ CT_hist
 ## Boxplot showing difference in choline levels and placental weight among heavily exposed and unexposed individuals
 
 ``` r
-#Methionine by alcohol exposure
+#Choline by alcohol exposure
 chol_alc<-ggplot(Data,aes(x=factor(heavyexpYN),y=Choline,fill=factor(heavyexpYN)))+
   geom_boxplot()+
   theme_bw()+
-  labs(x="Heavy alcohol exposure",y="Methionine levels (centered/scaled) ")+
+  labs(x="Heavy alcohol exposure",y="Choline levels (centered/scaled) ")+
   theme(axis.title=element_text(face="bold",size=16),
         axis.text=element_text(size=14),
         legend.position = "none")
