@@ -13,7 +13,7 @@ library(tidyverse)
 ## load dataset
 
 ``` r
-Data<-read.csv("Data/cape_ town_fasd_nutrient_data_08032020.csv")
+Data<-read.csv("Data/cape_town_fasd_nutrient_data_08032020.csv")
 ```
 
 ## Summary table to nutrient/weight distributions
@@ -139,18 +139,18 @@ CT_hist
 #range in gestational age spans 31.57 weeks to 44.57 weeks > should these two individuals be excluded from the analysis?  Maybe conduct sensitivity analysis restricted to term infants
 ```
 
-## Boxplot showing difference in methionine levels and placental weight among heavily exposed and unexposed individuals
+## Boxplot showing difference in choline levels and placental weight among heavily exposed and unexposed individuals
 
 ``` r
 #Methionine by alcohol exposure
-met_alc<-ggplot(Data,aes(x=factor(heavyexpYN),y=Methionine,fill=factor(heavyexpYN)))+
+chol_alc<-ggplot(Data,aes(x=factor(heavyexpYN),y=Choline,fill=factor(heavyexpYN)))+
   geom_boxplot()+
   theme_bw()+
   labs(x="Heavy alcohol exposure",y="Methionine levels (centered/scaled) ")+
   theme(axis.title=element_text(face="bold",size=16),
         axis.text=element_text(size=14),
         legend.position = "none")
-met_alc
+chol_alc
 ```
 
 ![](Nutrients_CapeTown_files/figure-gfm/boxplot-1.png)<!-- -->
